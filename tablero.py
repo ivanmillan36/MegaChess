@@ -1,0 +1,65 @@
+import constantes
+
+def imprimirTablero(data):
+    print(data[0:16])
+    print(data[16:32])
+    print(data[32:48])
+    print(data[48:64])
+    print(data[64:80])
+    print(data[80:96])
+    print(data[96:112])
+    print(data[112:128])
+    print(data[128:144])
+    print(data[144:160])
+    print(data[160:176])
+    print(data[176:192])
+    print(data[192:208])
+    print(data[208:224])
+    print(data[224:240])
+    print(data[240:256])
+
+def getPieza(data, x, y):
+    posicionEnString = (y*16) + x
+    pieza = data[posicionEnString]
+    return pieza
+
+def posicionVacia(data, x, y):
+    pieza = getPieza(data, x, y)
+    if (pieza == ' '):
+        return True
+    else:
+        return False
+
+def getPosicion(index):
+    if(index < 16):
+        return [index,0]
+    if(index >= 16 and index < 32):
+        return [index - 16, 1]
+    if(index >= 32 and index < 48):
+        return [index -32, 2]
+    if(index >= 48 and index < 64):
+        return [index - 48, 3]
+    if(index >= 64 and index < 80):
+        return [index - 64, 4]
+    if(index >= 80 and index < 96):
+        return [index -80, 5]
+    if(index >= 96 and index < 112):
+        return [index - 96, 6]
+    if(index >= 112 and index < 128):
+        return [index - 112, 7]
+    if(index >= 128 and index < 144):
+        return [index - 128, 8]
+    if(index >= 144 and index < 160):
+        return [index - 144, 9]
+    if(index >= 160 and index < 176):
+        return [index - 160, 10]
+    if(index >= 176 and index < 192):
+        return [index -176, 11]
+    if(index >= 192 and index < 208):
+        return [index -192, 12]
+    if(index >= 208 and index < 224):
+        return [index - 208, 13]
+    if(index >= 224 and index < 240):
+        return [index - 224, 14]
+    if(index >= 240 and index < 256):
+        return [index - 240, 15]
