@@ -19,9 +19,16 @@ def imprimirTablero(data):
     print(data[240:256])
 
 def getPieza(data, x, y):
-    posicionEnString = (y*16) + x
-    pieza = data[posicionEnString]
-    return pieza
+    if(x <= 15 and y <= 15 and x >= 0 and y >= 0):
+        posicionEnString = (y*16) + x
+        pieza = data[posicionEnString]   
+        return pieza
+
+def getColor(pieza):
+    if(pieza == 'p' or pieza == 'q' or pieza == 'r' or pieza == 'h' or pieza == 'k' or pieza == 'b'):
+        return 'black'
+    if(pieza == 'P' or pieza == 'Q' or pieza == 'R' or pieza == 'H' or pieza == 'K' or pieza == 'B'):
+        return 'white'
 
 def posicionVacia(data, x, y):
     pieza = getPieza(data, x, y)

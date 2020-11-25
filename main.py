@@ -5,6 +5,8 @@ import sys
 import websockets
 import time
 import constantes
+import player
+import tablero
 
 
 async def send(websocket, action, data):
@@ -48,7 +50,9 @@ async def play(websocket):
                             'board_id': data['data']['board_id'],
                         },
                     )
-            if data['event'] == 'your_turn':               
+            if data['event'] == 'your_turn':
+                movimiento = player.realizarMovimiento(data['data']['board'], data['data']['actual_turn'])  
+                tablero.imprimirTablero(data['data']['board'])   
                 await send(
                     websocket,
                     'move',
