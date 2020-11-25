@@ -31,10 +31,16 @@ def getPuntosPieza(pieza):
         return constantes.SCORE_REY
 
 def getPuntosPorMovimiento(board, pieza, movimiento):
+    if (pieza == 'p'):
+        if (tablero.posicionVacia(board, movimiento[0], movimiento[1])):
+            return getPuntosPieza(pieza) + movimiento[1] + 100
+    if (pieza == 'P'):
+        if (tablero.posicionVacia(board, movimiento[0], movimiento[1])):
+            return getPuntosPieza(pieza) + 12 - movimiento[1] + 100
     if (tablero.posicionVacia(board, movimiento[0], movimiento[1])):
         return getPuntosPieza(pieza)
     else:
-        return getPuntosPieza(tablero.getPieza(board, movimiento[0], movimiento[1])) * 10
+        return getPuntosPieza(tablero.getPieza(board, movimiento[0], movimiento[1])) * 30
 
 def getMejorMovimientoPieza(board, pieza, movimientos):
     highScore = 0
@@ -72,3 +78,5 @@ def getMejorMovimiento(board, color):
                 mayorPuntaje = puntaje
                 mejorMovimiento = [posicionInicial,movimiento]
     return mejorMovimiento
+
+

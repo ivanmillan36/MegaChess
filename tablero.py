@@ -18,11 +18,16 @@ def imprimirTablero(data):
     print(data[224:240])
     print(data[240:256])
 
-def getPieza(data, x, y):
+def getPieza(board, x, y):
     if(x <= 15 and y <= 15 and x >= 0 and y >= 0):
         posicionEnString = (y*16) + x
-        pieza = data[posicionEnString]   
+        pieza = board[posicionEnString]   
         return pieza
+
+def getPiezaIndex( x, y):
+    if(x <= 15 and y <= 15 and x >= 0 and y >= 0):
+        posicionEnString = (y*16) + x 
+        return posicionEnString
 
 def getColor(pieza):
     if(pieza == 'p' or pieza == 'q' or pieza == 'r' or pieza == 'h' or pieza == 'k' or pieza == 'b'):
@@ -70,3 +75,9 @@ def getPosicion(index):
         return [index - 224, 14]
     if(index >= 240 and index < 256):
         return [index - 240, 15]
+
+def getTableroLuegoDeMovimiento(board, movimiento):
+    pieza = getPieza(board, movimiento[0][0], movimiento[0][1])
+    board[getPiezaIndex(movimiento[0][0],movimiento[0][1])] = ' '
+    board[getPiezaIndex(movimiento[1][0],movimiento[1][1])] = pieza
+    return board

@@ -40,3 +40,15 @@ def test_getPieza(data, x, y, expected):
 )
 def test_getPosicion(index, expected):
     assert getPosicion(index) == expected
+
+@pytest.mark.parametrize(
+    "x,y, expected",
+    [
+        (0,0, 0),
+        (15,0, 15),
+        (15,1, 31),
+        (1,1, 17),
+    ] 
+)
+def test_getPiezaIndex(x,y, expected):
+    assert getPiezaIndex(x,y) == expected

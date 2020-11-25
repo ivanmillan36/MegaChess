@@ -230,6 +230,3 @@ def getMovimientos(board, x, y):
                 break
 
     return movimientosPosibles
-
-
-print(getMovimientos(constantes.BOARD_TEST_REINA, 1, 9))

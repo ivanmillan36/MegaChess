@@ -32,7 +32,7 @@ async def play(websocket):
     while True:
         try:
             response = await websocket.recv()
-            #print(f"< {response}")
+            print(f"< {response}")
             data = json.loads(response)
             if data['event'] == 'update_user_list':
                 print(data['data']['users_list'])
@@ -42,7 +42,7 @@ async def play(websocket):
                 print(data['data']['black_username'] + " Black score: " + data['data']['black_score'])
                 pass
             if data['event'] == 'ask_challenge':
-                if data['data']['username'] == 'ivanmillan':
+                if data['data']['username'] != 'ivanmillan':
                     await send(
                         websocket,
                         'accept_challenge',
