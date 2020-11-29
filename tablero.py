@@ -81,3 +81,15 @@ def getTableroLuegoDeMovimiento(board, movimiento):
     board[getPiezaIndex(movimiento[0][0],movimiento[0][1])] = ' '
     board[getPiezaIndex(movimiento[1][0],movimiento[1][1])] = pieza
     return board
+
+def campoEnemigo(pieza, y):
+    if (getColor(pieza) == 'black'):
+        if(y >= 8):
+            return True
+        else:
+            return False
+    if (getColor(pieza) == 'white'):
+        if(y <= 7):
+            return True
+        else:
+            return False

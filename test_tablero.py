@@ -52,3 +52,15 @@ def test_getPosicion(index, expected):
 )
 def test_getPiezaIndex(x,y, expected):
     assert getPiezaIndex(x,y) == expected
+
+@pytest.mark.parametrize(
+    "pieza,y, expected",
+    [
+        ('p',9, True),
+        ('q',4, False),
+        ('P',4, True),
+        ('R',0, True),
+    ] 
+)
+def test_campoEnemigo(pieza,y, expected):
+    assert campoEnemigo(pieza,y) == expected

@@ -32,9 +32,10 @@ async def play(websocket):
     while True:
         try:
             response = await websocket.recv()
-            print(f"< {response}")
+            #print(f"< {response}")
             data = json.loads(response)
             if data['event'] == 'update_user_list':
+                print("User List: ")
                 print(data['data']['users_list'])
                 pass
             if data['event'] == 'gameover':
@@ -42,7 +43,7 @@ async def play(websocket):
                 print(data['data']['black_username'] + " Black score: " + data['data']['black_score'])
                 pass
             if data['event'] == 'ask_challenge':
-                if data['data']['username'] != 'ivanmillan':
+                if data['data']['username'] == 'ivanmillan':
                     await send(
                         websocket,
                         'accept_challenge',
@@ -51,7 +52,9 @@ async def play(websocket):
                         },
                     )
             if data['event'] == 'your_turn':
-                movimiento = player.realizarMovimiento(data['data']['board'], data['data']['actual_turn'])  
+                movimiento = player.realizarMovimiento(data['data']['board'], data['data']['actual_turn'])
+                print("")
+                print("********* Partida contra " + data['data']['opponent_username'] + " ****************")  
                 tablero.imprimirTablero(data['data']['board'])   
                 await send(
                     websocket,
