@@ -55,7 +55,16 @@ async def play(websocket):
                 movimiento = player.realizarMovimiento(data['data']['board'], data['data']['actual_turn'])
                 print("")
                 print("********* Partida contra " + data['data']['opponent_username'] + " ****************")  
-                tablero.imprimirTablero(data['data']['board'])   
+                tablero.imprimirTablero(data['data']['board'])
+
+                #await send(
+                #    websocket,
+                #    'abort',
+                #    {
+                #        Board_id:data['data']['board_id']
+                #    },
+                #)   
+
                 await send(
                     websocket,
                     'move',
@@ -76,3 +85,4 @@ async def play(websocket):
 
 if __name__ == '__main__':
     asyncio.get_event_loop().run_until_complete(start(constantes.AUTH_TOKEN))
+
