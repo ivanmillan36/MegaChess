@@ -43,7 +43,7 @@ async def play(websocket):
                 print(data['data']['black_username'] + " Black score: " + data['data']['black_score'])
                 pass
             if data['event'] == 'ask_challenge':
-                if data['data']['username'] == 'ivanmillan':
+                if (data['data']['username'] == 'ivanmillan' or data['data']['username'] == 'nicolasvc' or data['data']['username'] == 'EmileDos'):
                     await send(
                         websocket,
                         'accept_challenge',
@@ -52,10 +52,10 @@ async def play(websocket):
                         },
                     )
             if data['event'] == 'your_turn':
-                movimiento = player.realizarMovimiento(data['data']['board'], data['data']['actual_turn'])
-                print("")
                 print("********* Partida contra " + data['data']['opponent_username'] + " ****************")  
+                print("Color = " + data['data']['actual_turn'])
                 tablero.imprimirTablero(data['data']['board'])
+                movimiento = player.realizarMovimiento(data['data']['board'], data['data']['actual_turn'])
 
                 #await send(
                 #    websocket,

@@ -81,7 +81,10 @@ def getTableroLuegoDeMovimiento(board, movimiento):
         pieza = getPieza(board, movimiento[0][0], movimiento[0][1])
         index = getPiezaIndex(movimiento[0][0],movimiento[0][1])
         newBoard = board[0:index] + " " + board[index+1 :]
-
+        if(pieza == 'p' and movimiento[1][1] == 7):
+            pieza = 'q'
+        if(pieza == 'P' and movimiento[1][1] == 8):
+            pieza = 'Q'
         index = getPiezaIndex(movimiento[1][0],movimiento[1][1])
         newBoard = newBoard[0:index] + pieza + newBoard[index+1:]
         return newBoard

@@ -111,7 +111,7 @@ def simularJugadasFuturas(board, colorSimulado, color, movimiento, iteraciones, 
 
         iteracionesRestantes = iteraciones - 1
         if(iteracionesRestantes == 0):
-            return score
+            return newScore
         else:
             return simularJugadasFuturas(newBoard, colorSimulado, color, Mejormovimiento['mejorMovimiento'], iteracionesRestantes, newScore)
     except:

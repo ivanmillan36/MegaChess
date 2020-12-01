@@ -1,6 +1,22 @@
 import pytest
-from constantes import PLAYEER_TEST_MEJOR_MOVIMIENTO
 import movimientos
+
+PLAYEER_TEST_MEJOR_MOVIMIENTO = (   '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    ' q              ' +
+                                    '                ' +
+                                    '                ' +
+                                    ' P              ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' )
 
 @pytest.mark.parametrize(
     "board, color, expected",
