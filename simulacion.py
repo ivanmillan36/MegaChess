@@ -53,7 +53,7 @@ def getPuntosPorMovimiento(board, pieza, movimiento):
                 return getPuntosPieza(pieza) + movimiento[1] + 100
         if (pieza == 'P'):
             if (tablero.posicionVacia(board, movimiento[0], movimiento[1])):
-                return getPuntosPieza(pieza) + 12 - movimiento[1] + 100
+                return getPuntosPieza(pieza) + 15 - movimiento[1] + 100
         if (tablero.posicionVacia(board, movimiento[0], movimiento[1])):
             return getPuntosPieza(pieza)
         else:
