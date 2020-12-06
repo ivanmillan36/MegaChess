@@ -1,6 +1,7 @@
 import constantes
 
 def imprimirTablero(data):
+    data = estilizarPiezas(data)
     print(data[0:16])
     print(data[16:32])
     print(data[32:48])
@@ -17,6 +18,12 @@ def imprimirTablero(data):
     print(data[208:224])
     print(data[224:240])
     print(data[240:256])
+
+def estilizarPiezas(data):
+    dataConEstilo = ''
+    for i in range(256):
+        dataConEstilo += constantes.PRETTY_PIECES[data[i]]
+    return dataConEstilo
 
 def getPieza(board, x, y):
     if(x <= 15 and y <= 15 and x >= 0 and y >= 0):

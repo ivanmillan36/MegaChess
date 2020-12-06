@@ -14,11 +14,11 @@ def getMejorMovimiento(board, color):
             y = pieza[2]
             posicionInicial = [x,y]
             movimiento = getMejorMovimientoPieza(board, pieza[0], getMovimientos(board, pieza[0], x, y))
-            if(movimiento != []):
-                puntaje = getPuntosPorMovimiento(board, pieza[0], movimiento)
+            if(movimiento['mejorMovimiento'] != []):
+                puntaje = movimiento['mayorPuntaje']
                 if(puntaje > mayorPuntaje):
                     mayorPuntaje = puntaje
-                    mejorMovimiento = [posicionInicial,movimiento]
+                    mejorMovimiento = [posicionInicial,movimiento['mejorMovimiento']]
         return {'mejorMovimiento':mejorMovimiento, 'mayorPuntaje':mayorPuntaje}
     except:
         print("Simulacion: Error al obtener mejor movimiento")
@@ -42,7 +42,7 @@ def getMejorMovimientoPieza(board, pieza, movimientos):
                 if(score > highScore):
                     highScore = score
                     mejorMovimiento = movimiento
-        return mejorMovimiento
+        return {'mejorMovimiento':mejorMovimiento, 'mayorPuntaje':highScore}
     except:
         print("Simulacion: Error al obtener mejor movimiento de pieza.")
 
@@ -50,18 +50,18 @@ def getPuntosPorMovimiento(board, pieza, movimiento):
     try:
         if (pieza == 'p'):
             if (tablero.posicionVacia(board, movimiento[0], movimiento[1])):
-                return getPuntosPieza(pieza) + movimiento[1] + 100
+                return getPuntosPieza(pieza) + movimiento[1]
         if (pieza == 'P'):
             if (tablero.posicionVacia(board, movimiento[0], movimiento[1])):
-                return getPuntosPieza(pieza) + 15 - movimiento[1] + 100
+                return getPuntosPieza(pieza) + 15 - movimiento[1]
         if (tablero.posicionVacia(board, movimiento[0], movimiento[1])):
             return getPuntosPieza(pieza)
         else:
             piezaEnemiga = tablero.getPieza(board, movimiento[0], movimiento[1])
             if(tablero.campoEnemigo(piezaEnemiga, movimiento[1])):
-                return getPuntosPieza(tablero.getPieza(board, movimiento[0], movimiento[1])) * 100
+                return getPuntosPieza(piezaEnemiga) * 50
             else:
-                return getPuntosPieza(tablero.getPieza(board, movimiento[0], movimiento[1])) * 30
+                return getPuntosPieza(piezaEnemiga) * 50
     except:
         print("Simulacion: Error al obtener puntos por movimiento.")
 
@@ -95,25 +95,29 @@ def getPuntosPieza(pieza):
 
 def simularJugadasFuturas(board, colorSimulado, color, movimiento, iteraciones, score):
     try:
+        colorPlayer = color
+        colorOponenteTemporal = colorSimulado
+        newScore = 0
+
         iteracionesRestantes = iteraciones
         newBoard = tablero.getTableroLuegoDeMovimiento(board, movimiento)
-        if (colorSimulado == 'black'):
-            colorSimulado = 'white'
-            Mejormovimiento = getMejorMovimiento(newBoard,colorSimulado)
+        if (colorOponenteTemporal == 'black'):
+            colorOponenteTemporal = 'white'
+            Mejormovimiento = getMejorMovimiento(newBoard,colorOponenteTemporal)
         else:
-            colorSimulado = 'black'
-            Mejormovimiento = getMejorMovimiento(newBoard,colorSimulado)
+            colorOponenteTemporal = 'black'
+            Mejormovimiento = getMejorMovimiento(newBoard,colorOponenteTemporal)
 
-        if(color != colorSimulado):
-            newScore = score - Mejormovimiento['mayorPuntaje']
+        if(colorPlayer != colorOponenteTemporal):
+            newScore = newScore - Mejormovimiento['mayorPuntaje']
         else:
-            newScore = score + Mejormovimiento['mayorPuntaje']
+            newScore = newScore + Mejormovimiento['mayorPuntaje']
 
         iteracionesRestantes = iteraciones - 1
         if(iteracionesRestantes == 0):
             return newScore
         else:
-            return simularJugadasFuturas(newBoard, colorSimulado, color, Mejormovimiento['mejorMovimiento'], iteracionesRestantes, newScore)
+            return simularJugadasFuturas(newBoard, colorOponenteTemporal, colorPlayer, Mejormovimiento['mejorMovimiento'], iteracionesRestantes, newScore)
     except:
         return score
 

@@ -9,7 +9,7 @@ def getMovimientos(board, x, y):
     if(color == 'black'):
         if (tablero.posicionVacia(board, x, y + 1)):
             movimientosPosibles.append([x,y+1])
-        if (y == 3 and tablero.posicionVacia(board,x, y + 2)):
+        if (y == 3 and tablero.posicionVacia(board,x, y + 2) and tablero.posicionVacia(board,x, y + 1)):
             movimientosPosibles.append([x, y + 2])
         if (tablero.getColor(tablero.getPieza(board, x + 1, y + 1)) == 'white'):
             movimientosPosibles.append([x + 1 , y + 1])
@@ -19,7 +19,7 @@ def getMovimientos(board, x, y):
     if(color == 'white'):
         if (tablero.posicionVacia(board, x, y-1)):
             movimientosPosibles.append([x,y-1])
-        if (y == 12 and tablero.posicionVacia(board,x, y - 2)):
+        if (y == 12 and tablero.posicionVacia(board,x, y - 2) and tablero.posicionVacia(board,x, y - 1)):
             movimientosPosibles.append([x, y - 2])
         if (tablero.getColor(tablero.getPieza(board, x + 1, y - 1)) == 'black'):
             movimientosPosibles.append([x + 1 , y - 1])

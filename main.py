@@ -43,7 +43,7 @@ async def play(websocket):
                 print(data['data']['black_username'] + " Black score: " + data['data']['black_score'])
                 pass
             if data['event'] == 'ask_challenge':
-                if (data['data']['username'] == 'ivanmillan' or data['data']['username'] == 'nicolasvc' or data['data']['username'] == 'EmileDos'):
+                if (data['data']['username'] == 'ivanmillan'):
                     await send(
                         websocket,
                         'accept_challenge',
@@ -61,7 +61,7 @@ async def play(websocket):
                 #    websocket,
                 #    'abort',
                 #    {
-                #        Board_id:data['data']['board_id']
+                #        'board_id':data['data']['board_id']
                 #    },
                 #)   
 

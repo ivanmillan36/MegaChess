@@ -34,21 +34,27 @@ def getPuntosPieza(pieza):
 def getPuntosPorMovimiento(board, pieza, movimiento):
     if (pieza == 'p'):
         if (tablero.posicionVacia(board, movimiento[0], movimiento[1])):
-            return getPuntosPieza(pieza) + movimiento[1] + 100
+            puntos = getPuntosPieza(pieza) + movimiento[1] + 100
+            if(movimiento[0] == 0 or movimiento[0] == 1 or movimiento[0] == 14 or movimiento[0] == 15):
+                puntos += 10
+            return puntos
     if (pieza == 'P'):
         if (tablero.posicionVacia(board, movimiento[0], movimiento[1])):
-            return getPuntosPieza(pieza) + 15 - movimiento[1] + 100
+            puntos = getPuntosPieza(pieza) + 15 - movimiento[1] + 100
+            if(movimiento[0] == 0 or movimiento[0] == 1 or movimiento[0] == 14 or movimiento[0] == 15):
+                puntos += 10
+            return puntos
     if (tablero.posicionVacia(board, movimiento[0], movimiento[1])):
         return getPuntosPieza(pieza)
     else:
         piezaEnemiga = tablero.getPieza(board, movimiento[0], movimiento[1])
         if(tablero.campoEnemigo(piezaEnemiga, movimiento[1])):
-            return getPuntosPieza(tablero.getPieza(board, movimiento[0], movimiento[1])) * 100
+            return getPuntosPieza(piezaEnemiga) * 100
         else:
-            return getPuntosPieza(tablero.getPieza(board, movimiento[0], movimiento[1])) * 30
+            return getPuntosPieza(piezaEnemiga) * 100
 
 def getMejorMovimientoPieza(board, pieza,x ,y ,movimientos):
-    highScore = -99999999
+    highScore = -999999
     mejorMovimiento = []
     colorPlayer = tablero.getColor(pieza)
     posicionInicial = [x,y]
@@ -57,12 +63,12 @@ def getMejorMovimientoPieza(board, pieza,x ,y ,movimientos):
             score = getPuntosPorMovimiento(board, pieza, movimiento)
             # evaluar futuros movimientos, lo cual sumaria o restaria score para asi evaluar la jugada con el mayor score final.
             movimientoCompleto = [posicionInicial, movimiento]
-            if(colorPlayer != ' '):
-                score = score + simularJugadasFuturas(board, colorPlayer, colorPlayer, movimientoCompleto, constantes.CANT_ITERACIONES, score)
+            scoreSimulado = simularJugadasFuturas(board, colorPlayer, colorPlayer, movimientoCompleto, constantes.CANT_ITERACIONES, score)
+            score = score + scoreSimulado
             if(score > highScore):
                 highScore = score
                 mejorMovimiento = movimiento
-    return mejorMovimiento
+    return {'mejorMovimiento':mejorMovimiento, 'mayorPuntaje':highScore}
 
 def getPiezasPorColor(board, color):
     piezas = []
@@ -77,7 +83,7 @@ def getMejorMovimiento(board, color):
     try:
         piezas = getPiezasPorColor(board, color)
         mejorMovimiento = []
-        mayorPuntaje = -99999999
+        mayorPuntaje = -999999
         puntaje = 0
         for pieza in piezas:
             x = pieza[1]
@@ -86,11 +92,11 @@ def getMejorMovimiento(board, color):
             movimientosPieza = getMovimientos(board, pieza[0], x, y)
             if(movimientosPieza != []):
                 movimiento = getMejorMovimientoPieza(board, pieza[0], x, y, movimientosPieza)
-                if(movimiento != []):
-                    puntaje = getPuntosPorMovimiento(board, pieza[0], movimiento)
+                if(movimiento['mejorMovimiento'] != []):
+                    puntaje = movimiento['mayorPuntaje']
                     if(puntaje > mayorPuntaje):
                         mayorPuntaje = puntaje
-                        mejorMovimiento = [posicionInicial,movimiento]
+                        mejorMovimiento = [posicionInicial,movimiento['mejorMovimiento']]
         return mejorMovimiento
     except:
         print("movimientos: Error al obtener mejor movimiento")

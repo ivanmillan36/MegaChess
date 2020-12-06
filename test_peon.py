@@ -1,28 +1,29 @@
 import pytest
-import movimientos
+from piezas.peon import getMovimientos
+import tablero
 
-PLAYEER_TEST_MEJOR_MOVIMIENTO = (   '                ' +
-                                    '                ' +
-                                    '                ' +
-                                    '                ' +
-                                    '     Q pppp     ' +
+BOARD_TEST_PEON =               (   '                ' +
                                     '                ' +
                                     '                ' +
                                     '                ' +
                                     '                ' +
-                                    '       P P      ' +
                                     '                ' +
                                     '                ' +
                                     '                ' +
-                                    '    BB          ' +
                                     '                ' +
-                                    '       Kq       ' )
+                                    ' p              ' +
+                                    '  Q             ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' )
 
 @pytest.mark.parametrize(
-    "board, color, expected",
+    "board, x, y, expected",
     [
-        (PLAYEER_TEST_MEJOR_MOVIMIENTO, 'white', [[7, 15], [8, 15]]),
+        (BOARD_TEST_PEON, 1, 9, [[1, 10], [2, 10]]),
     ] 
 )
-def test_getMejorMovimiento(board, color, expected):
-    assert movimientos.getMejorMovimiento(board, color) == expected
+def test_getMovimientos(board, x, y, expected):
+    assert getMovimientos(board, x,y) == expected
