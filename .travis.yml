@@ -4,6 +4,6 @@ python:
 install:
   - pip install -r requirements.txt
 script:
-  - coverage run -m pytest
+  - pytest --cov=MegaChess/
 after_success:
   - coveralls
