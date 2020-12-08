@@ -27,5 +27,4 @@ BOARD_TEST_ALFIL =               (  '                ' +
     ] 
 )
 def test_getMovimientos(board, x, y, expected):
-    print(getMovimientos(board, x,y))
     assert getMovimientos(board, x,y) == expected

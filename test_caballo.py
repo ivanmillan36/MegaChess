@@ -29,5 +29,4 @@ BOARD_TEST_CABALLO =               ('                ' +
     ] 
 )
 def test_getMovimientos(board, x, y, expected):
-    print(getMovimientos(board, x,y))
     assert getMovimientos(board, x,y) == expected
