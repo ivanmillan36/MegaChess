@@ -89,6 +89,12 @@ def test_getPosicion(index, expected):
         (15,0, 15),
         (15,1, 31),
         (1,1, 17),
+        (3,0, 48),
+        (3,5, 53),
+        (6,0, 96),
+        (15,0, 240),
+        (15,15, 255),
+
     ] 
 )
 def test_getPiezaIndex(x,y, expected):
@@ -103,6 +109,10 @@ def test_getPiezaIndex(x,y, expected):
         ('q',4, False),
         ('P',4, True),
         ('R',0, True),
+        ('B',2, True),
+        ('H',1, True),
+        ('h',14, True),
+        ('h',1, False),
     ] 
 )
 def test_campoEnemigo(pieza,y, expected):
