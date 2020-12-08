@@ -56,13 +56,21 @@ def getPuntosPorMovimiento(board, pieza, movimiento):
             if(movimiento[1] == 5):
                 puntos += 200
                 return puntos
+    if (pieza == 'k'):
+        if (tablero.posicionVacia(board, movimiento[0], movimiento[1])):
+            puntos = 100
+            return puntos
+    if (pieza == 'K'):
+        if (tablero.posicionVacia(board, movimiento[0], movimiento[1])):
+            puntos = 100
+            return puntos
 
     if (tablero.posicionVacia(board, movimiento[0], movimiento[1])):
         return getPuntosPieza(pieza)
     else:
         piezaEnemiga = tablero.getPieza(board, movimiento[0], movimiento[1])
         if(tablero.campoEnemigo(piezaEnemiga, movimiento[1])):
-            return getPuntosPieza(piezaEnemiga) * 100
+            return getPuntosPieza(piezaEnemiga) * 1000
         else:
             if(movimiento[1] == 5 or movimiento[1] == 6 or movimiento[1] == 7 or movimiento[1] == 8 or movimiento[1] == 9 or movimiento[1] == 10):
                 return getPuntosPieza(piezaEnemiga) * 1000
