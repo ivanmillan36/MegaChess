@@ -74,6 +74,19 @@ def test_getPiezaIndex( x, y, expected):
         (16, [0,1]),
         (32, [0,2]),
         (31, [15,1]),
+        (48, [0,3]),
+        (64, [0,4]),
+        (80, [0,5]),
+        (96, [0,6]),
+        (112, [0,7]),
+        (128, [0,8]),
+        (144, [0,9]),
+        (160, [0,10]),
+        (176, [0,11]),
+        (192, [0,12]),
+        (208, [0,13]),
+        (224, [0,14]),
+        (240, [0,15]),
         (255, [15,15]),
     ] 
 )
@@ -89,10 +102,10 @@ def test_getPosicion(index, expected):
         (15,0, 15),
         (15,1, 31),
         (1,1, 17),
-        (3,0, 48),
-        (3,5, 53),
-        (6,0, 96),
-        (15,0, 240),
+        (0,3, 48),
+        (5,3, 53),
+        (0,6, 96),
+        (0,15, 240),
         (15,15, 255),
 
     ] 
@@ -162,3 +175,76 @@ TABLERO_TEST_SALIDA =  ('rrhhbbqqkkbbhhrr' +
 )
 def test_getTableroLuegoDeMovimiento(board, movimiento, expected):
     assert getTableroLuegoDeMovimiento(board, movimiento) == expected
+
+##############################################################################################
+TEST_ESTILIZAR_PIEZAS_ENTRADA =   ( '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '     pqhbkr     ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '    PQHBKR      ' +
+                                    '                ' +
+                                    '                ' )
+
+TEST_ESTILIZAR_PIEZAS_SALIDA =    ( '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '     ♟♛♞♝♚♜     ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '    ♙♕♘♗♔♖      ' +
+                                    '                ' +
+                                    '                ' )
+
+@pytest.mark.parametrize(
+    "board, expected",
+    [
+        (TEST_ESTILIZAR_PIEZAS_ENTRADA, TEST_ESTILIZAR_PIEZAS_SALIDA),
+    ] 
+)
+def test_estilizarPiezas(board, expected):
+    assert estilizarPiezas(board) == expected
+
+##############################################################################################
+
+TEST_PRINT_TABLERO =              ( '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '     pqhbkr     ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '    PQHBKR      ' +
+                                    '                ' +
+                                    '                ' )
+@pytest.mark.parametrize(
+    "board, expected",
+    [
+        (TEST_ESTILIZAR_PIEZAS_ENTRADA, None),
+    ] 
+)
+def test_imprimirTablero(board, expected):
+    assert imprimirTablero(board) == expected
+
+##############################################################################################
