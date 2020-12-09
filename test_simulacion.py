@@ -64,3 +64,34 @@ def test_getMovimientos(board, pieza, x, y, expected):
     assert simulacion.getMovimientos(board, pieza, x, y) == expected
 
 ##############################################################################################
+
+TEST_GET_PUNTOS_POR_MOVIMIENTO =  ( '       q        ' +
+                                    '       K        ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '                ' +
+                                    '              w ' +
+                                    '               P' )
+
+@pytest.mark.parametrize(
+    "board, pieza, movimiento, expected",
+    [
+        (TEST_GET_PUNTOS_POR_MOVIMIENTO, 'q', [7,1],  constantes.SCORE_REY*100),
+        (TEST_GET_PUNTOS_POR_MOVIMIENTO, 'K', [7,0],  constantes.SCORE_REINA*100),
+        (TEST_GET_PUNTOS_POR_MOVIMIENTO, 'P', [15,14],  constantes.SCORE_PEON+15-14),
+        (TEST_GET_PUNTOS_POR_MOVIMIENTO, 'P', [16,16],  None),
+        (TEST_GET_PUNTOS_POR_MOVIMIENTO, 'Y', [15,14],  None),
+        (TEST_GET_PUNTOS_POR_MOVIMIENTO, 'R', [14,14],  None),      
+    ] 
+)
+def test_getPuntosPorMovimiento(board, pieza, movimiento, expected):
+    assert simulacion.getPuntosPorMovimiento(board, pieza, movimiento) == expected

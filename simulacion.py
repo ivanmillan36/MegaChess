@@ -59,9 +59,9 @@ def getPuntosPorMovimiento(board, pieza, movimiento):
         else:
             piezaEnemiga = tablero.getPieza(board, movimiento[0], movimiento[1])
             if(tablero.campoEnemigo(piezaEnemiga, movimiento[1])):
-                return getPuntosPieza(piezaEnemiga) * 99
+                return getPuntosPieza(piezaEnemiga) * 100
             else:
-                return getPuntosPieza(piezaEnemiga) * 99
+                return getPuntosPieza(piezaEnemiga) * 100
     except:
         print("Simulacion: Error al obtener puntos por movimiento.")
 

@@ -43,6 +43,7 @@ async def play(websocket):
                 print(data['data']['black_username'] + " Black score: " + data['data']['black_score'])
                 pass
             if data['event'] == 'ask_challenge':
+                print('Te ha desafiado: ' + data['data']['username'])
                 if (data['data']['username'] == 'ivanmillan'):
                     await send(
                         websocket,
@@ -50,33 +51,35 @@ async def play(websocket):
                         {
                             'board_id': data['data']['board_id'],
                         },
-                    )
+                    )   
+
             if data['event'] == 'your_turn':
                 print("********* Partida contra " + data['data']['opponent_username'] + " ****************")  
                 print("Color = " + data['data']['actual_turn'])
                 tablero.imprimirTablero(data['data']['board'])
                 movimiento = player.realizarMovimiento(data['data']['board'], data['data']['actual_turn'])
 
-                #await send(
-                #    websocket,
-                #    'abort',
-                #    {
-                #        'board_id':data['data']['board_id']
-                #    },
-                #)   
-
-                await send(
-                    websocket,
-                    'move',
-                    {
-                        'board_id': data['data']['board_id'],
-                        'turn_token': data['data']['turn_token'],
-                        'from_row': movimiento[0][1],
-                        'from_col': movimiento[0][0],
-                        'to_row': movimiento[1][1],
-                        'to_col': movimiento[1][0], 
-                    },
-                )
+                if(constantes.CANCELAR_PARTIDAS_ACTIVAS):
+                    await send(
+                        websocket,
+                        'abort',
+                        {
+                            'board_id':data['data']['board_id']
+                        },
+                    )
+                else:
+                    await send(
+                        websocket,
+                        'move',
+                        {
+                            'board_id': data['data']['board_id'],
+                            'turn_token': data['data']['turn_token'],
+                            'from_row': movimiento[0][1],
+                            'from_col': movimiento[0][0],
+                            'to_row': movimiento[1][1],
+                            'to_col': movimiento[1][0], 
+                        },
+                    )
 
         except Exception as e:
             print('error {}'.format(str(e)))
