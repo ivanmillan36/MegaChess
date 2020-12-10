@@ -59,9 +59,9 @@ def getPuntosPorMovimiento(board, pieza, movimiento):
         else:
             piezaEnemiga = tablero.getPieza(board, movimiento[0], movimiento[1])
             if(tablero.campoEnemigo(piezaEnemiga, movimiento[1])):
-                return getPuntosPieza(piezaEnemiga) * 100
+                return getPuntosPieza(piezaEnemiga) * 1200
             else:
-                return getPuntosPieza(piezaEnemiga) * 100
+                return getPuntosPieza(piezaEnemiga) * 1200
     except:
         print("Simulacion: Error al obtener puntos por movimiento.")
 
@@ -120,6 +120,3 @@ def simularJugadasFuturas(board, colorSimulado, color, movimiento, iteraciones, 
             return simularJugadasFuturas(newBoard, colorOponenteTemporal, colorPlayer, Mejormovimiento['mejorMovimiento'], iteracionesRestantes, newScore)
     except:
         return score
-
-#score = simularJugadasFuturas(constantes.TABLERO_INICIAL, 'black', 'black', [[1,9],[1,10]], 20, 0)
-#print(score)

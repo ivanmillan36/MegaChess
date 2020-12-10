@@ -107,11 +107,11 @@ TEST_GET_PUNTOS_POR_MOVIMIENTO =  ( 'p      q        ' +
     "board, pieza, movimiento, expected",
     [
         (TEST_GET_PUNTOS_POR_MOVIMIENTO, 'q', [7,1],  constantes.SCORE_REY*1000),
-        (TEST_GET_PUNTOS_POR_MOVIMIENTO, 'q', [1,8],  constantes.SCORE_REINA),
-        (TEST_GET_PUNTOS_POR_MOVIMIENTO, 'q', [0,9],  constantes.SCORE_REINA+200),
+        (TEST_GET_PUNTOS_POR_MOVIMIENTO, 'q', [1,8],  constantes.SCORE_REINA +100),
+        (TEST_GET_PUNTOS_POR_MOVIMIENTO, 'q', [0,9],  constantes.SCORE_REINA),
         (TEST_GET_PUNTOS_POR_MOVIMIENTO, 'K', [7,0],  constantes.SCORE_REINA*0),
-        (TEST_GET_PUNTOS_POR_MOVIMIENTO, 'p', [0,1],  constantes.SCORE_PEON+1+100+10),      
-        (TEST_GET_PUNTOS_POR_MOVIMIENTO, 'P', [0,14],  constantes.SCORE_PEON+15-14+100+10),
+        (TEST_GET_PUNTOS_POR_MOVIMIENTO, 'p', [0,1],  constantes.SCORE_PEON+1+100),      
+        (TEST_GET_PUNTOS_POR_MOVIMIENTO, 'P', [0,14],  constantes.SCORE_PEON+15-14+100),
     ] 
 )
 def test_getPuntosPorMovimiento(board, pieza, movimiento, expected):

@@ -44,7 +44,7 @@ async def play(websocket):
                 pass
             if data['event'] == 'ask_challenge':
                 print('Te ha desafiado: ' + data['data']['username'])
-                if (data['data']['username'] == 'ivanmillan'):
+                if (data['data']['username'] == 'ivanmillan' or data['data']['username'] == 'nicoUns'):
                     await send(
                         websocket,
                         'accept_challenge',
