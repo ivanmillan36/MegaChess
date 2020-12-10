@@ -41,7 +41,7 @@ TEST_GET_MOVIMIENTOS_ENTRADA =  (   '      KqK       ' +
                                     '                ' +
                                     '                ' +
                                     '                ' +
-                                    '                ' +
+                                    '       R        ' +
                                     '                ' +
                                     '                ' +
                                     '                ' +
@@ -51,6 +51,7 @@ TEST_GET_MOVIMIENTOS_ENTRADA =  (   '      KqK       ' +
     "board, pieza, x, y, expected",
     [
         (TEST_GET_MOVIMIENTOS_ENTRADA,'q', 7 , 0, [[6,0], [6,1], [7,1], [8,1], [8,0]]),
+        (TEST_GET_MOVIMIENTOS_ENTRADA,'R', 7 , 11, [[7, 10], [7, 9], [7, 8], [7, 7], [7, 6], [7, 5], [7, 4], [7, 3], [7, 2], [8, 11], [9, 11], [10, 11], [11, 11], [12, 11], [13, 11], [14, 11], [15, 11], [7, 12], [7, 13], [7, 14], [7, 15], [6, 11], [5, 11], [4, 11], [3, 11], [2, 11], [1, 11], [0, 11]]),
     ] 
 )
 def test_getMovimientos(board, pieza, x, y, expected):
