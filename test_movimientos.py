@@ -23,6 +23,7 @@ PLAYEER_TEST_MEJOR_MOVIMIENTO = (   '                ' +
     "board, color, expected",
     [
         (PLAYEER_TEST_MEJOR_MOVIMIENTO, 'white', [[7, 15], [8, 15]]),
+        (PLAYEER_TEST_MEJOR_MOVIMIENTO, 'black', [[8, 15], [7, 15]]),
     ] 
 )
 def test_getMejorMovimiento(board, color, expected):
