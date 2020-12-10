@@ -113,7 +113,7 @@ def simularJugadasFuturas(board, colorSimulado, color, movimiento, iteraciones, 
         else:
             newScore = newScore + Mejormovimiento['mayorPuntaje']
 
-        iteracionesRestantes = iteraciones - 1
+        iteracionesRestantes -= 1
         if(iteracionesRestantes == 0):
             return newScore
         else:

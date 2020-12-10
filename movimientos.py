@@ -36,13 +36,13 @@ def getPuntosPorMovimiento(board, pieza, movimiento):
         if (tablero.posicionVacia(board, movimiento[0], movimiento[1])):
             puntos = getPuntosPieza(pieza) + movimiento[1] + 100
             if(movimiento[1] == 7):
-                puntos += 10000
+                puntos += 1000
             return puntos
     if (pieza == 'P'):
         if (tablero.posicionVacia(board, movimiento[0], movimiento[1])):
             puntos = getPuntosPieza(pieza) + 15 - movimiento[1] + 100
             if(movimiento[1] == 8):
-                puntos += 10000
+                puntos += 1000
             return puntos
     if (pieza == 'q'):
         if (tablero.posicionVacia(board, movimiento[0], movimiento[1])):
@@ -70,15 +70,9 @@ def getPuntosPorMovimiento(board, pieza, movimiento):
     else:
         piezaEnemiga = tablero.getPieza(board, movimiento[0], movimiento[1])
         if(tablero.campoEnemigo(piezaEnemiga, movimiento[1])):
-            return getPuntosPieza(piezaEnemiga) * 1000
+            return getPuntosPieza(piezaEnemiga) * 3000
         else:
-            if(piezaEnemiga == 'k' or piezaEnemiga == 'K'):
-                return getPuntosPieza(piezaEnemiga) * 1000
-                
-            if(movimiento[1] == 5 or movimiento[1] == 6 or movimiento[1] == 7 or movimiento[1] == 8 or movimiento[1] == 9 or movimiento[1] == 10):
-                return getPuntosPieza(piezaEnemiga) * 1000
-            else:
-                return getPuntosPieza(piezaEnemiga) * 0
+            return getPuntosPieza(piezaEnemiga) * 1000
 
 def getMejorMovimientoPieza(board, pieza,x ,y ,movimientos):
     highScore = -999999
@@ -128,4 +122,4 @@ def getMejorMovimiento(board, color):
     except:
         print("movimientos: Error al obtener mejor movimiento")
 
-
+              
