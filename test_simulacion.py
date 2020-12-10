@@ -79,8 +79,8 @@ TEST_GET_PUNTOS_POR_MOVIMIENTO =  ( '       q        ' +
                                     '                ' +
                                     '                ' +
                                     '                ' +
-                                    '              w ' +
-                                    '               P' )
+                                    '              R ' +
+                                    'H              P' )
 
 @pytest.mark.parametrize(
     "board, pieza, movimiento, expected",
@@ -89,8 +89,8 @@ TEST_GET_PUNTOS_POR_MOVIMIENTO =  ( '       q        ' +
         (TEST_GET_PUNTOS_POR_MOVIMIENTO, 'K', [7,0],  constantes.SCORE_REINA*1200),
         (TEST_GET_PUNTOS_POR_MOVIMIENTO, 'P', [15,14],  constantes.SCORE_PEON+15-14),
         (TEST_GET_PUNTOS_POR_MOVIMIENTO, 'P', [16,16],  None),
-        (TEST_GET_PUNTOS_POR_MOVIMIENTO, 'Y', [15,14],  None),
-        (TEST_GET_PUNTOS_POR_MOVIMIENTO, 'R', [14,14],  None),      
+        (TEST_GET_PUNTOS_POR_MOVIMIENTO, 'R', [15,14],  constantes.SCORE_TORRE),
+        (TEST_GET_PUNTOS_POR_MOVIMIENTO, 'H', [0,14],  constantes.SCORE_CABALLO),     
     ] 
 )
 def test_getPuntosPorMovimiento(board, pieza, movimiento, expected):
