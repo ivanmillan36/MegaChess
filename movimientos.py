@@ -47,13 +47,13 @@ def getPuntosPorMovimiento(board, pieza, movimiento):
     if (pieza == 'q'):
         if (tablero.posicionVacia(board, movimiento[0], movimiento[1])):
             puntos = getPuntosPieza(pieza)
-            if(movimiento[1] == 8 or movimiento[1] == 8):
+            if(movimiento[1] == 8):
                 puntos += 100
                 return puntos
     if (pieza == 'Q'):
         if (tablero.posicionVacia(board, movimiento[0], movimiento[1])):
             puntos = getPuntosPieza(pieza)
-            if(movimiento[1] == 7 or movimiento[1] == 7):
+            if(movimiento[1] == 7):
                 puntos += 100
                 return puntos
     if (pieza == 'k'):
